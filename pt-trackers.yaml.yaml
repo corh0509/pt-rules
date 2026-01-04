@@ -1,0 +1,22 @@
+# 专用PT站点规则集
+# 生成时间：根据当前对话时间
+# 包含站点：pt.keepfrds.com, u2.dmhy.org, kp.m-team.cc, www.open.cd, www.nicept.net, discfan.net, hdcity.work, www.tjupt.org, nanyangpt.com, hdchina.org, pterclub.com, pt.soulvoice.club
+payload:
+  # 使用 DOMAIN 进行精确匹配的站点
+  - DOMAIN,u2.dmhy.org
+  - DOMAIN,www.open.cd
+  - DOMAIN,www.nicept.net
+  - DOMAIN,discfan.net
+  - DOMAIN,hdcity.work
+  - DOMAIN,www.tjupt.org
+  - DOMAIN,nanyangpt.com
+  - DOMAIN,hdchina.org
+  - DOMAIN,pterclub.com
+  - DOMAIN,pt.soulvoice.club
+
+  # 对于包含子域名的站点，同时使用 DOMAIN 和 DOMAIN-SUFFIX 确保完整覆盖
+  - DOMAIN,pt.keepfrds.com
+  - DOMAIN-SUFFIX,keepfrds.com # 同时匹配主域，防止有其他子域名
+
+  - DOMAIN,kp.m-team.cc
+  - DOMAIN-SUFFIX,m-team.cc # 同时匹配主域
