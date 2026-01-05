@@ -1,5 +1,4 @@
 # 专用PT站点规则集
-# 生成时间：根据当前对话时间
 # 包含站点：pt.keepfrds.com, u2.dmhy.org, kp.m-team.cc, www.open.cd, www.nicept.net, discfan.net, hdcity.work, www.tjupt.org, nanyangpt.com, hdchina.org, pterclub.com, pt.soulvoice.club
 payload:
   # 使用 DOMAIN 进行精确匹配的站点
