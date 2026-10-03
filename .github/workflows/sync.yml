@@ -2,10 +2,9 @@ name: Sync Rules
 
 on:
   schedule:
-    - cron: '0 3 * * *' # 每天 UTC 3 点（北京时间 11 点）自动运行
-  workflow_dispatch: # 支持手动触发
+    - cron: '0 3 * * *'
+  workflow_dispatch:
 
-# 👇 加上这一行，赋予写入权限，解决 exit code 128 报错
 permissions:
   contents: write
 
@@ -23,12 +22,6 @@ jobs:
           curl -fsSL "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"  -o ruleset/proxy.txt
           curl -fsSL "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/apple.txt"  -o ruleset/apple.txt
           curl -fsSL "https://raw.githubusercontent.com/binaryu/emos-proxy-rule/main/rules/emos-mihomo.yaml" -o ruleset/emos-mihomo.yaml
-          
-          cp pt-trackers.yaml ruleset/pt-trackers.yaml 2>/dev/null || true
-          if [ ! -f ruleset/pt-trackers.yaml ]; then
-            curl -fsSL "https://raw.githubusercontent.com/corh0509/pt-rules/main/pt-trackers.yaml" -o ruleset/pt-trackers.yaml
-          fi
-          
           curl -fsSL "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat"  -o geoip.dat
           curl -fsSL "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat" -o geosite.dat
 
@@ -43,3 +36,14 @@ jobs:
             git commit -m "Auto sync rules: $(date '+%Y-%m-%d %H:%M')"
             git push
           fi
+
+      # ===== 新增步骤：保活，防止 60 天无活动暂停 =====
+      - name: Keepalive
+        if: success()
+        run: |
+          echo "Last keepalive: $(date '+%Y-%m-%d %H:%M:%S')" > .keepalive
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .keepalive
+          git commit -m "Keepalive: $(date '+%Y-%m-%d %H:%M')"
+          git push
