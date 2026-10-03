@@ -1,0 +1,41 @@
+name: Sync Rules
+
+on:
+  schedule:
+    - cron: '0 3 * * *' # 每天 UTC 3 点（北京时间 11 点）自动运行
+  workflow_dispatch: # 支持手动触发
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download rules
+        run: |
+          mkdir -p ruleset
+          curl -fsSL "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt" -o ruleset/direct.txt
+          curl -fsSL "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"  -o ruleset/proxy.txt
+          curl -fsSL "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/apple.txt"  -o ruleset/apple.txt
+          curl -fsSL "https://raw.githubusercontent.com/binaryu/emos-proxy-rule/main/rules/emos-mihomo.yaml" -o ruleset/emos-mihomo.yaml
+          # 因为 pt-trackers.yaml 是你这个仓库的根文件，直接复制到 ruleset 目录
+          cp pt-trackers.yaml ruleset/pt-trackers.yaml 2>/dev/null || true
+          # 如果仓库根目录没有 pt-trackers.yaml，则从上游抓取（防止文件不存在报错）
+          if [ ! -f ruleset/pt-trackers.yaml ]; then
+            curl -fsSL "https://raw.githubusercontent.com/corh0509/pt-rules/main/pt-trackers.yaml" -o ruleset/pt-trackers.yaml
+          fi
+          curl -fsSL "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat"  -o geoip.dat
+          curl -fsSL "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat" -o geosite.dat
+
+      - name: Commit and push
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Auto sync rules: $(date '+%Y-%m-%d %H:%M')"
+            git push
+          fi
