@@ -12,6 +12,7 @@ payload:
   - DOMAIN,hdchina.org
   - DOMAIN,pterclub.com
   - DOMAIN,pt.soulvoice.club
+  - DOMAIN,yuyan.nswifts.com
 
   # 对于包含子域名的站点，同时使用 DOMAIN 和 DOMAIN-SUFFIX 确保完整覆盖
   - DOMAIN,pt.keepfrds.com
