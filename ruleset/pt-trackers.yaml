@@ -5,6 +5,8 @@ payload:
   - DOMAIN-SUFFIX,u2.dmhy.org
   - DOMAIN-SUFFIX,m-team.cc
   - DOMAIN-SUFFIX,m-team.io
+  # MikroTik Cloud（RouterOS backup/DDNS）
+  - DOMAIN-SUFFIX,mikrotik.com
   - DOMAIN-SUFFIX,open.cd
   - DOMAIN-SUFFIX,nicept.net
   - DOMAIN-SUFFIX,discfan.net
