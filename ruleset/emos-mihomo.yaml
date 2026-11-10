@@ -1,6 +1,7 @@
-# Updated: 2026-11-07 06:53:00
+# Updated: 2026-11-09 05:50:54
 payload:
   - DOMAIN,a.aiaa.top
+  - DOMAIN,axuitomo.l.cd
   - DOMAIN,clun.top
   - DOMAIN,dx.dirige.de5.net
   - DOMAIN,emby-proxy-panel.jetchao2.kdns.fr
@@ -34,6 +35,7 @@ payload:
   - DOMAIN,emos.tuu.cc.cd
   - DOMAIN,emos.wangjunqiang.indevs.in
   - DOMAIN,emos.wwzb.de
+  - DOMAIN,emos.xerodragon.dpdns.org
   - DOMAIN,emos.xunye8.dpdns.org
   - DOMAIN,emos6.dolby.dpdns.org
   - DOMAIN,fake.xx.kg
