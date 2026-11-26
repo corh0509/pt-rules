@@ -1,0 +1,61 @@
+payload:
+  # 百度网盘
+  - 'pan.baidu.com'
+  - 'yun.baidu.com'
+  - 'pcs.baidu.com'
+  - '+.baidupcs.com'
+  # 阿里云盘
+  - '+.aliyundrive.com'
+  - '+.alipan.com'
+  - '+.aliyundrive.net'
+  # 夸克网盘 / UC 网盘
+  - '+.quark.cn'
+  - '+.uc.cn'
+  # 迅雷云盘
+  - '+.xunlei.com'
+  # 天翼云盘
+  - '+.189.cn'
+  # 移动云盘 / 和彩云
+  - '+.139.com'
+  # 联通云盘
+  - 'pan.wo.cn'
+  - '+.wo.cn'
+  # 115 网盘
+  - '+.115.com'
+  - '+.115cdn.com'
+  # 123 云盘
+  - '+.123pan.com'
+  - '+.123pan.cn'
+  - '+.123684.com'
+  - '+.123865.com'
+  - '+.123912.com'
+  # 蓝奏云
+  - '+.lanzou.com'
+  - '+.lanzoui.com'
+  - '+.lanzoux.com'
+  - '+.lanzouw.com'
+  - '+.lanzoub.com'
+  - '+.lanzoue.com'
+  - '+.lanzouf.com'
+  - '+.lanzoug.com'
+  - '+.lanzouh.com'
+  - '+.lanzouj.com'
+  - '+.lanzouk.com'
+  - '+.lanzoul.com'
+  - '+.lanzoum.com'
+  - '+.lanzoun.com'
+  - '+.lanzouo.com'
+  - '+.lanzoup.com'
+  - '+.lanzouq.com'
+  - '+.lanzour.com'
+  - '+.lanzous.com'
+  - '+.lanzout.com'
+  - '+.lanzouu.com'
+  - '+.lanzouv.com'
+  - '+.lanzouy.com'
+  # 腾讯微云
+  - '+.weiyun.com'
+  # 坚果云
+  - '+.jianguoyun.com'
+  # 城通网盘
+  - '+.ctfile.com'

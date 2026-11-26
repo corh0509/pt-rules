@@ -2,7 +2,8 @@
 
 mihomo / Clash 用的**规则集镜像**，每天自动从上游同步一次，给自己的代理配置当 `rule-providers` 和 `geodata` 源。
 
-> ⚠️ 自动生成，**不要手工改这里的文件**——下次同步会被覆盖。
+> ⚠️ `ruleset/direct.txt`、`proxy.txt`、`apple.txt`、`emos-mihomo.yaml`、`geoip.dat`、`geosite.dat` 自动生成，不要手工改；
+> 自定义直连规则写 `ruleset/custom-direct.txt`，同步时会自动合并进 `direct.txt`。
 
 ---
 
@@ -11,6 +12,7 @@ mihomo / Clash 用的**规则集镜像**，每天自动从上游同步一次，�
 | 文件 | 来源 | 用途 |
 |---|---|---|
 | `ruleset/direct.txt` | [Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules) | 直连域名规则 |
+| `ruleset/custom-direct.txt` | 本仓库手工维护 | 自定义直连补充（国内云盘等），同步时合并进 `direct.txt` |
 | `ruleset/proxy.txt` | 同上 | 需要走代理的域名 |
 | `ruleset/apple.txt` | 同上 | Apple 服务（通常直连） |
 | `ruleset/emos-mihomo.yaml` | [binaryu/emos-proxy-rule](https://github.com/binaryu/emos-proxy-rule) | 分流规则（classical） |
@@ -23,6 +25,7 @@ mihomo / Clash 用的**规则集镜像**，每天自动从上游同步一次，�
 GitHub Actions → `.github/workflows/sync.yml`：
 
 - 每天 **UTC 03:00（北京时间 11:00）** 自动拉取上游；
+- 拉取后先把 `ruleset/custom-direct.txt` 合并进 `ruleset/direct.txt`（去重），再提交；
 - 支持手动触发（Actions → Sync Rules → Run workflow）；
 - 有变化才提交，提交信息形如 `Auto sync rules: 2026-10-21 03:12`；
 - 每次成功后写 `.keepalive`，保持仓库活跃。

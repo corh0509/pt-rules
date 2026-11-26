@@ -25,6 +25,26 @@ jobs:
           curl -fsSL "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat"  -o geoip.dat
           curl -fsSL "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat" -o geosite.dat
 
+      - name: Merge custom direct rules
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          main = Path('ruleset/direct.txt')
+          custom = Path('ruleset/custom-direct.txt')
+          lines = main.read_text().splitlines()
+          existing = {line.strip() for line in lines}
+          added = 0
+          for line in custom.read_text().splitlines():
+              entry = line.strip()
+              if entry.startswith("- '") and entry not in existing:
+                  lines.append("  " + entry)
+                  existing.add(entry)
+                  added += 1
+          main.write_text("\n".join(lines) + "\n")
+          print(f"custom direct entries added: {added}")
+          PY
+
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
